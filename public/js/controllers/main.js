@@ -2,6 +2,15 @@ angular.module('todoController', [])
 
 	// inject the Todo service factory into our controller
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
+		function IsJsonString(str) {
+			try {
+				JSON.parse(str);
+			} catch (e) {
+				return false;
+			}
+			return true;
+		}
+
 		$scope.formData = {};
 		$scope.loading = true;
 
@@ -10,7 +19,14 @@ angular.module('todoController', [])
 		// use the service to get all the todos
 		Todos.get()
 			.success(function(data) {
-				$scope.todos = data;
+				$scope.todos = Object.keys(data).map(k => {
+					if (IsJsonString(data[k])) {
+						return {
+							text: JSON.parse(data[k]).text
+						}
+					}
+					return {text: ""}
+				});
 				$scope.loading = false;
 			});
 

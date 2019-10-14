@@ -6,9 +6,13 @@
   "author": "Scotch",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "mongoose": "4.10.8",
+    "etcd3": "^0.2.13",
     "express": "^4.10.8",
     "method-override": "^2.3.10",
+    "mongoose": "4.10.8",
     "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "node-etcd": "^7.0.0"
   }
 }
