@@ -5,7 +5,10 @@ const TODO = "todo"
 const { Etcd3 } = require('etcd3');
 
 function getEtcd() {
-    return new Etcd3();
+    var host = process.env.ETCDCLUSTER_CLUSTERIP || 'localhost';
+    var port = process.env.ETCDCLUSTER_CLUSTERPORT || '2379';
+    var etcdServer = host + ":" + port;
+    return new Etcd3({ hosts: etcdServer });
     // return new Etcd("127.0.0.1:2379");
 }
 
