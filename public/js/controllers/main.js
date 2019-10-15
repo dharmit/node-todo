@@ -1,7 +1,7 @@
 angular.module('todoController', [])
 
 	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','$route','Todos', function($scope, $http,$route, Todos) {
+	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		function IsJsonString(str) {
 			try {
 				JSON.parse(str);
@@ -47,7 +47,7 @@ angular.module('todoController', [])
 						$scope.loading = false;
 						$scope.formData = {}; // clear the form so our user is ready to enter another
 						// $scope.todos = data; // assign our new list of todos
-						$route.reload();
+						window.location.reload();
 					});
 			}
 		};
